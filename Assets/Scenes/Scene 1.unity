@@ -384,6 +384,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1071204271966608919, guid: 496e7e72dacffb3478b9d0e9a457ae1f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1102004069}
+    - targetCorrespondingSourceObject: {fileID: 1071204271966608919, guid: 496e7e72dacffb3478b9d0e9a457ae1f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1102004074}
   m_SourcePrefab: {fileID: 100100000, guid: 496e7e72dacffb3478b9d0e9a457ae1f, type: 3}
 --- !u!1 &1102004068 stripped
 GameObject:
@@ -431,6 +434,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1102004074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102004068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65c0596b18993044aa4ec4c4a04283cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1557568151
 GameObject:
   m_ObjectHideFlags: 0
@@ -10897,7 +10912,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1557568151}
-  m_BodyType: 1
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

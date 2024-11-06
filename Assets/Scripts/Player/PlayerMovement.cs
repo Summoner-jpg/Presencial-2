@@ -5,57 +5,61 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public float jumpHeight = 2f;
-    private bool _isGrounded = true;
-    private bool _facingRight = true;
+    public float jumpForce = 7f;
+    private bool _isGrounded;
+    private Rigidbody rb;
+    private Vector3 moveDirection;
 
+    private PlayerRoll playerRoll;
 
+    void Start()
+    {
+        rb = GetComponent<rigidbody>();
+        playerRoll = GetComponent<PlayerRoll>(); 
+    }
 
     void Update()
     {
-        float currentX = transform.position.x;
-        float currentY = transform.position.y;
+        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
 
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.Shift) && !playerRoll.IsRolling)
         {
-            currentX += moveSpeed * Time.deltaTime;
-            if (!_facingRight)
-            {
-                flip();
-            }
-        }
-
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
-        {
-            currentX -= moveSpeed * Time.deltaTime;
-            if (_facingRight)
-            {
-                flip();
-            }
+            playerRoll.StartRoll();
         }
 
         if (_isGrounded && Input.GetKeyDown(KeyCode.W))
         {
-            currentY += jumpHeight;
-            _isGrounded = false;
+            Jump();
         }
-
-        transform.position = new Vector3(currentX, currentY, transform.position.z);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void FixedUpdate()
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (moveDirection.magnitude > 0 && !playerRoll.IsRolling)
+        {
+            rb.MovePosition(transform.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+        }
+    }
+    private void Jump()
+    {
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))  
         {
             _isGrounded = true;
         }
     }
 
-    private void flip()
+    private void OnCollisionExit(Collision collision)
     {
-        _facingRight = !_facingRight;
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            _isGrounded = false;
+        }
     }
-}
+
+
+
