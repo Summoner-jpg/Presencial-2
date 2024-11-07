@@ -9,11 +9,11 @@ public class PlayerRoll : MonoBehaviour
     public float rollDuration = 0.5f;
     private bool _isRolling = false;
     public bool IsRolling => _isRolling;
-    private Rigidbody rb; 
+    private Rigidbody2D _rb; 
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     public void StartRoll()
@@ -34,7 +34,7 @@ public class PlayerRoll : MonoBehaviour
         float timeElapsed = 0f;
         while (timeElapsed < rollDuration)
         {
-            rb.MovePosition(Vector3.Lerp(transform.position, targetPosition, timeElapsed / rollDuration));
+            _rb.MovePosition(Vector3.Lerp(transform.position, targetPosition, timeElapsed / rollDuration));
 
             float rollRotation = Mathf.Lerp(0f, 360f, timeElapsed / rollDuration);
             transform.Rotate(0f, rollRotation * Time.deltaTime * rollSpeed, 0f); 
@@ -42,7 +42,7 @@ public class PlayerRoll : MonoBehaviour
             yield return null;
         }
 
-        rb.MovePosition(targetPosition);
+        _rb.MovePosition(targetPosition);
         _isRolling = false;
     }
 }

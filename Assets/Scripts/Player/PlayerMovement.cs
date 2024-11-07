@@ -7,24 +7,28 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpForce = 7f;
     private bool _isGrounded;
-    private Rigidbody rb;
-    private Vector3 moveDirection;
+    private Rigidbody2D _rb;
+    private Vector2 _moveDirection;
 
-    private PlayerRoll playerRoll;
+    private PlayerRoll _playerRoll;
 
     void Start()
     {
-        rb = GetComponent<rigidbody>();
-        playerRoll = GetComponent<PlayerRoll>(); 
+        _rb = GetComponent<Rigidbody2D>();
+        if (_rb == null)
+        {
+            Debug.LogWarning("There's no rigidbody");
+        }
+        _playerRoll = GetComponent<PlayerRoll>();
     }
 
     void Update()
     {
-        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
+        _moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
 
-        if (Input.GetKeyDown(KeyCode.Shift) && !playerRoll.IsRolling)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !_playerRoll.IsRolling)
         {
-            playerRoll.StartRoll();
+            _playerRoll.StartRoll();
         }
 
         if (_isGrounded && Input.GetKeyDown(KeyCode.W))
@@ -35,31 +39,34 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (moveDirection.magnitude > 0 && !playerRoll.IsRolling)
+        if (_moveDirection.magnitude > 0 && !_playerRoll.IsRolling)
         {
-            rb.MovePosition(transform.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+            _rb.velocity = new Vector2(_moveDirection.x * moveSpeed, _rb.velocity.y);
         }
     }
+
     private void Jump()
     {
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))  
+        if (collision.gameObject.CompareTag("Ground"))
         {
             _isGrounded = true;
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
             _isGrounded = false;
         }
     }
+}    
+    
 
 
 
