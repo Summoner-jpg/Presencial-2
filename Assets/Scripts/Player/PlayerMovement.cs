@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
-    
+
     private bool _isGrounded;
     private Rigidbody2D _rb;
     private Vector2 _moveDirection;
@@ -22,37 +22,51 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         if (_rb == null)
         {
-            Debug.LogWarning("There's no rigidbody");
+            Debug.LogWarning("There's no Rigidbody2D attached to the player.");
         }
         _playerRoll = GetComponent<PlayerRoll>();
     }
 
     void Update()
     {
-        _moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
-        
-        _isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        _moveDirection = new Vector2(Input.GetAxis("Horizontal"), 0).normalized;
+
+        _isGrounded = CheckGround();
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && !_playerRoll.IsRolling)
         {
-            _playerRoll.StartRoll();
+            Vector2 rollDirection = _moveDirection;
+            if (rollDirection != Vector2.zero)
+            {
+                _playerRoll.StartRoll(rollDirection);
+            }
         }
 
         if (_isGrounded && Input.GetKeyDown(KeyCode.W))
         {
             Jump();
         }
-        
+
         if (Mathf.Abs(_moveDirection.x) > 0)
         {
             _animator.SetBool("IsMoving", true);
+
+            // Gira al personaje hacia la dirección del movimiento
+            if (_moveDirection.x > 0)
+            {
+                transform.localScale = new Vector3(1, 1, 1); // Mirar a la derecha
+            }
+            else if (_moveDirection.x < 0)
+            {
+                transform.localScale = new Vector3(-1, 1, 1); // Mirar a la izquierda
+            }
         }
         else
         {
             _animator.SetBool("IsMoving", false);
         }
     }
-    
+
     void FixedUpdate()
     {
         if (_moveDirection.magnitude > 0 && !_playerRoll.IsRolling)
@@ -67,6 +81,27 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        if (_isGrounded)
+        {
+            _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
+    }
+
+    private bool CheckGround()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckRadius, groundLayer);
+        
+        Debug.DrawRay(groundCheck.position, Vector2.down * groundCheckRadius, Color.red);
+
+        return hit.collider != null;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (groundCheck != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        }
     }
 }
