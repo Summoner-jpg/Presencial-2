@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c6575323d3b0dec45864f25d7e5378b9
+guid: f8ed1347254e41546900b48c85ee3942
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,148 +110,190 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Walk00_0
+      name: RollAnimation_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 28
         y: 0
-        width: 240
-        height: 380
+        width: 186
+        height: 313
       alignment: 9
-      pivot: {x: 0.4999999, y: 0.3219813}
+      pivot: {x: 0.4384494, y: 0.5023792}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b686526ab1a592846a7acd8d30369714
-      internalID: -1739143719
+      spriteID: 36c0edc62a0fae846901aaefedf61067
+      internalID: 318918357
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk00_1
+      name: RollAnimation_1
       rect:
         serializedVersion: 2
-        x: 240
+        x: 886
         y: 0
-        width: 240
-        height: 380
+        width: 105
+        height: 313
       alignment: 9
-      pivot: {x: 0.4999999, y: 0.3219813}
+      pivot: {x: 0.4384494, y: 0.5023792}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8993bda8c236b9949b844dd6cb877a3f
-      internalID: -1080624603
+      spriteID: 0436949954261fd4091394fc307015a9
+      internalID: 1239794846
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk00_2
+      name: RollAnimation_2
       rect:
         serializedVersion: 2
-        x: 480
+        x: 1698
         y: 0
-        width: 240
-        height: 380
+        width: 84
+        height: 144
       alignment: 9
-      pivot: {x: 0.4999999, y: 0.3219813}
+      pivot: {x: 0.4384494, y: 0.5023792}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f91d16ac1f495e2458ad87e7190e191a
-      internalID: 1235430498
+      spriteID: 196ab4027f53a5242ac902861a413452
+      internalID: -750016991
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk00_3
+      name: RollAnimation_3
       rect:
         serializedVersion: 2
-        x: 720
-        y: 0
-        width: 240
-        height: 380
+        x: 2468
+        y: 28
+        width: 144
+        height: 85
       alignment: 9
-      pivot: {x: 0.4999999, y: 0.3219813}
+      pivot: {x: 0.4384494, y: 0.5023792}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 293335a2f4f3bb24ebc831abaef4e25c
-      internalID: 1822517049
+      spriteID: 44584624c3db20a42b5e772c4c20a4f8
+      internalID: -651650666
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk00_4
+      name: RollAnimation_4
       rect:
         serializedVersion: 2
-        x: 960
+        x: 3298
         y: 0
-        width: 240
-        height: 380
+        width: 84
+        height: 144
       alignment: 9
-      pivot: {x: 0.4999999, y: 0.3219813}
+      pivot: {x: 0.4384494, y: 0.5023792}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 60ba0546974906c49b2fe604a143b44f
-      internalID: 2129414736
+      spriteID: 0715ff9cd28b6f446bfdf5fc62c6b1ef
+      internalID: 685823781
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk00_5
+      name: RollAnimation_5
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 0
-        width: 240
-        height: 380
+        x: 4068
+        y: 28
+        width: 144
+        height: 85
       alignment: 9
-      pivot: {x: 0.4999999, y: 0.3219813}
+      pivot: {x: 0.4384494, y: 0.5023792}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78701fed37e1ec44bb41ddf720655f9a
-      internalID: -348678251
+      spriteID: 9b5e21464fc13f54e9592f593e49c58a
+      internalID: -1161296252
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk00_6
+      name: RollAnimation_6
       rect:
         serializedVersion: 2
-        x: 1440
+        x: 4897
         y: 0
-        width: 240
-        height: 380
+        width: 85
+        height: 144
       alignment: 9
-      pivot: {x: 0.4999999, y: 0.3219813}
+      pivot: {x: 0.4384494, y: 0.5023792}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ac4b071fdb1f8246a7427d0d4f35522
-      internalID: 1223039449
+      spriteID: 66972bd2f37b82a4fb27ed2f06d1d01c
+      internalID: 1560602394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RollAnimation_7
+      rect:
+        serializedVersion: 2
+        x: 5688
+        y: 0
+        width: 106
+        height: 313
+      alignment: 9
+      pivot: {x: 0.4384494, y: 0.5023792}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bfa76d50ffb953448e87a3043861aa8
+      internalID: 525266311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RollAnimation_8
+      rect:
+        serializedVersion: 2
+        x: 6427
+        y: 0
+        width: 186
+        height: 313
+      alignment: 9
+      pivot: {x: 0.4384494, y: 0.5023792}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 905c02c224d40f1479e09d8f0c68fd6e
+      internalID: -1799017364
       vertices: []
       indices: 
       edges: []
@@ -267,13 +309,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Walk00_0: -1739143719
-      Walk00_1: -1080624603
-      Walk00_2: 1235430498
-      Walk00_3: 1822517049
-      Walk00_4: 2129414736
-      Walk00_5: -348678251
-      Walk00_6: 1223039449
+      RollAnimation_0: 318918357
+      RollAnimation_1: 1239794846
+      RollAnimation_2: -750016991
+      RollAnimation_3: -651650666
+      RollAnimation_4: 685823781
+      RollAnimation_5: -1161296252
+      RollAnimation_6: 1560602394
+      RollAnimation_7: 525266311
+      RollAnimation_8: -1799017364
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerRespawn : MonoBehaviour
 {
-    public Transform currentCheckpoint;
+    private Transform currentCheckpoint;
 
     public void Respawn()
     {
@@ -14,7 +14,7 @@ public class PlayerRespawn : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("No se ha establecido ningún punto de control.");
+            Debug.LogWarning("There's no established Checkpoint");
         }
     }
 
@@ -22,7 +22,15 @@ public class PlayerRespawn : MonoBehaviour
     {
         if (other.CompareTag("Checkpoint"))
         {
-            currentCheckpoint = other.transform;
+            Checkpoint checkpoint = other.GetComponent<Checkpoint>();
+
+            if (checkpoint != null && !checkpoint.IsActive())
+            {
+                currentCheckpoint = other.transform;
+                checkpoint.Activate();
+
+                Debug.Log("New Checkpoint activated on: " + other.name);
+            }
         }
     }
 }
