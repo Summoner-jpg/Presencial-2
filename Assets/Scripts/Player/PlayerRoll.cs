@@ -6,6 +6,7 @@ public class PlayerRoll : MonoBehaviour
 {
     public float rollDistance = 5f;
     public float rollDuration = 0.5f;
+    public LayerMask collisionLayer;
 
     public Collider2D normalCollider;
     public Collider2D rollCollider;
@@ -20,7 +21,7 @@ public class PlayerRoll : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
-        
+
         if (rollCollider != null)
             rollCollider.enabled = false;
     }
@@ -42,25 +43,44 @@ public class PlayerRoll : MonoBehaviour
         if (rollCollider != null) rollCollider.enabled = true;
 
         direction = direction.normalized;
-
         Vector2 startPosition = _rb.position;
         Vector2 targetPosition = startPosition + direction * rollDistance;
 
         float timeElapsed = 0f;
+        Vector2 currentPosition;
 
         while (timeElapsed < rollDuration)
         {
-            _rb.MovePosition(Vector2.Lerp(startPosition, targetPosition, timeElapsed / rollDuration));
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
 
-        _rb.MovePosition(targetPosition);
+            float lerpFactor = timeElapsed / rollDuration;
+            currentPosition = Vector2.Lerp(startPosition, targetPosition, lerpFactor);
+            
+            RaycastHit2D hit = Physics2D.Raycast(_rb.position, direction, rollDistance * lerpFactor, collisionLayer);
+            if (hit.collider != null)
+            {
+                targetPosition = hit.point - direction * 0.1f;
+                break;
+            }
+
+
+            _rb.velocity = (currentPosition - _rb.position) / Time.fixedDeltaTime;
+            timeElapsed += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        
+        _rb.velocity = Vector2.zero;
+        _rb.position = targetPosition;
         
         if (normalCollider != null) normalCollider.enabled = true;
         if (rollCollider != null) rollCollider.enabled = false;
 
         _isRolling = false;
         _animator.SetBool("IsRolling", false);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, transform.right * rollDistance);
     }
 }
